@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ticketsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'tickets.jesseDBUser.Attendee' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Attendee">
+          <Key>
+            <PropertyRef Name="attendeeID" />
+          </Key>
+          <Property Name="attendeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="purchaseDate" Type="varchar" MaxLength="128" />
+          <Property Name="purchaseTime" Type="varchar" MaxLength="128" />
+          <Property Name="firstName" Type="varchar" MaxLength="128" />
+          <Property Name="lastName" Type="varchar" MaxLength="128" />
+          <Property Name="sessionID" Type="varchar" MaxLength="128" />
+          <Property Name="transactionID" Type="varchar" MaxLength="128" />
+          <Property Name="ticketQty" Type="varchar" MaxLength="128" />
+          <Property Name="totalAmount" Type="money" />
+        </EntityType>
+        <EntityType Name="Events">
+          <Key>
+            <PropertyRef Name="eventID" />
+          </Key>
+          <Property Name="eventID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="eventCategory" Type="varchar" MaxLength="256" />
+          <Property Name="eventLogo" Type="varchar" MaxLength="256" />
+          <Property Name="eventDescription" Type="varchar" MaxLength="256" />
+          <Property Name="eventLocation" Type="varchar" MaxLength="256" />
+          <Property Name="eventDate" Type="date" />
+          <Property Name="eventTime" Type="varchar" MaxLength="256" />
+          <Property Name="eventCost" Type="money" />
+        </EntityType>
+        <EntityType Name="IPN">
+          <Key>
+            <PropertyRef Name="transactionID" />
+          </Key>
+          <Property Name="transactionID" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="firstName" Type="varchar" MaxLength="128" />
+          <Property Name="lastName" Type="varchar" MaxLength="128" />
+          <Property Name="buyerEmail" Type="varchar" MaxLength="128" />
+          <Property Name="txTime" Type="datetime" />
+          <Property Name="custom" Type="varchar" MaxLength="128" />
+          <Property Name="ticketQty" Type="varchar" MaxLength="128" />
+          <Property Name="amount" Type="money" />
+          <Property Name="paymentStatus" Type="varchar" MaxLength="64" />
+        </EntityType>
+        <EntityContainer Name="ticketsModelStoreContainer">
+          <EntitySet Name="Events" EntityType="Self.Events" Schema="jesseDBUser" store:Type="Tables" />
+          <EntitySet Name="IPN" EntityType="Self.IPN" Schema="jesseDBUser" store:Type="Tables" />
+          <EntitySet Name="Attendee" EntityType="Self.Attendee" store:Type="Tables" store:Schema="jesseDBUser">
+            <DefiningQuery>SELECT 
+    [Attendee].[attendeeID] AS [attendeeID], 
+    [Attendee].[purchaseDate] AS [purchaseDate], 
+    [Attendee].[purchaseTime] AS [purchaseTime], 
+    [Attendee].[firstName] AS [firstName], 
+    [Attendee].[lastName] AS [lastName], 
+    [Attendee].[sessionID] AS [sessionID], 
+    [Attendee].[transactionID] AS [transactionID], 
+    [Attendee].[ticketQty] AS [ticketQty], 
+    [Attendee].[totalAmount] AS [totalAmount]
+    FROM [jesseDBUser].[Attendee] AS [Attendee]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ticketsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="eventID" />
+          </Key>
+          <Property Name="eventID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="eventCategory" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="eventLogo" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="eventDescription" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="eventLocation" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="eventDate" Type="DateTime" Precision="0" />
+          <Property Name="eventTime" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="eventCost" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="IPN">
+          <Key>
+            <PropertyRef Name="transactionID" />
+          </Key>
+          <Property Name="transactionID" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="firstName" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="lastName" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="buyerEmail" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="txTime" Type="DateTime" Precision="3" />
+          <Property Name="custom" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="ticketQty" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="amount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="paymentStatus" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Attendee">
+          <Key>
+            <PropertyRef Name="attendeeID" />
+          </Key>
+          <Property Name="attendeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="purchaseDate" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="purchaseTime" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="firstName" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="lastName" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="sessionID" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="transactionID" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="ticketQty" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="totalAmount" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityContainer Name="ticketsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Events" EntityType="Self.Event" />
+          <EntitySet Name="IPNs" EntityType="Self.IPN" />
+          <EntitySet Name="Attendees" EntityType="Self.Attendee" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ticketsModelStoreContainer" CdmEntityContainer="ticketsEntities">
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="ticketsModel.Event">
+              <MappingFragment StoreEntitySet="Events">
+                <ScalarProperty Name="eventID" ColumnName="eventID" />
+                <ScalarProperty Name="eventCategory" ColumnName="eventCategory" />
+                <ScalarProperty Name="eventLogo" ColumnName="eventLogo" />
+                <ScalarProperty Name="eventDescription" ColumnName="eventDescription" />
+                <ScalarProperty Name="eventLocation" ColumnName="eventLocation" />
+                <ScalarProperty Name="eventDate" ColumnName="eventDate" />
+                <ScalarProperty Name="eventTime" ColumnName="eventTime" />
+                <ScalarProperty Name="eventCost" ColumnName="eventCost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IPNs">
+            <EntityTypeMapping TypeName="ticketsModel.IPN">
+              <MappingFragment StoreEntitySet="IPN">
+                <ScalarProperty Name="transactionID" ColumnName="transactionID" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="buyerEmail" ColumnName="buyerEmail" />
+                <ScalarProperty Name="txTime" ColumnName="txTime" />
+                <ScalarProperty Name="custom" ColumnName="custom" />
+                <ScalarProperty Name="ticketQty" ColumnName="ticketQty" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="paymentStatus" ColumnName="paymentStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Attendees">
+            <EntityTypeMapping TypeName="ticketsModel.Attendee">
+              <MappingFragment StoreEntitySet="Attendee">
+                <ScalarProperty Name="attendeeID" ColumnName="attendeeID" />
+                <ScalarProperty Name="purchaseDate" ColumnName="purchaseDate" />
+                <ScalarProperty Name="purchaseTime" ColumnName="purchaseTime" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="sessionID" ColumnName="sessionID" />
+                <ScalarProperty Name="transactionID" ColumnName="transactionID" />
+                <ScalarProperty Name="ticketQty" ColumnName="ticketQty" />
+                <ScalarProperty Name="totalAmount" ColumnName="totalAmount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

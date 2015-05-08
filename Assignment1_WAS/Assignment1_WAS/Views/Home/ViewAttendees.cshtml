@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Assignment1_WAS.IPN>
+
+<div class="table-responsive" style="margin:5%">
+    <h2>Attendees</h2>
+    <table id="table_id" class="display table body-content">
+        <thead>
+            <tr>
+                <th class="text-center full">
+                    @Html.Raw("Transaction ID")
+                </th>
+                <th class="text-center">
+                    @Html.Raw("First Name")
+                </th>
+                <th class="text-center">
+                    @Html.Raw("Last Name")
+                </th>
+                <th class ="text-center full">
+                    @Html.Raw("Buyer Email")
+                </th>
+                <th class="text-center full">
+                    @Html.Raw("Purchase Time")
+                </th>
+                <th class="text-center full">
+                    @Html.Raw("Session ID")
+                </th>
+                <th class="text-center">
+                    @Html.Raw("Ticket Quantity")
+                </th>
+                <th class="text-center full">
+                    @Html.Raw("Amount")
+                </th>
+                <th class="text-center full">
+                    @Html.Raw("Payment Status")
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="text-center full">
+                        @Html.DisplayFor(modelItem => item.transactionID)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.firstName)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.lastName)
+                    </td>
+                    <td class="text-center full">
+                        @Html.DisplayFor(modelItem => item.buyerEmail)
+                    </td>
+                    <td class="text-center full">
+                        @Html.DisplayFor(modelItem => item.txTime)
+                    </td>
+                    <td class="text-center full">
+                        @Html.DisplayFor(modelItem => item.custom)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.ticketQty)
+                    </td>
+                    <td class="text-center full">
+                        @Html.Raw("$")@Html.DisplayFor(modelItem => item.amount)
+                    </td>
+                    <td class="text-right full">
+                        @Html.DisplayFor(modelItem => item.paymentStatus)
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>
+<!-- DataTables CSS -->
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.5/css/jquery.dataTables.css">
+
+<!-- jQuery -->
+<script type="text/javascript" charset="utf8" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+
+<!-- DataTables -->
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.5/js/jquery.dataTables.js"></script>
+
+<script>
+$(document).ready( function () {
+    $('#table_id').DataTable();
+} );
+</script>

@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ticketsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="eventID" />
+    </Key>
+    <Property Name="eventID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="eventCategory" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="eventLogo" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="eventDescription" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="eventLocation" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="eventDate" Type="DateTime" Precision="0" />
+    <Property Name="eventTime" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="eventCost" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="IPN">
+    <Key>
+      <PropertyRef Name="transactionID" />
+    </Key>
+    <Property Name="transactionID" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="firstName" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="lastName" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="buyerEmail" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="txTime" Type="DateTime" Precision="3" />
+    <Property Name="custom" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="ticketQty" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="amount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="paymentStatus" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Attendee">
+    <Key>
+      <PropertyRef Name="attendeeID" />
+    </Key>
+    <Property Name="attendeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="purchaseDate" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="purchaseTime" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="firstName" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="lastName" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="sessionID" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="transactionID" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="ticketQty" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="totalAmount" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityContainer Name="ticketsEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Events" EntityType="Self.Event" />
+    <EntitySet Name="IPNs" EntityType="Self.IPN" />
+    <EntitySet Name="Attendees" EntityType="Self.Attendee" />
+  </EntityContainer>
+</Schema>

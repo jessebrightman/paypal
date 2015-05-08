@@ -1,0 +1,110 @@
+﻿@model Assignment1_WAS.Event
+
+@{string sessionID = this.Session.SessionID;}
+
+<div class="container jumbotron">
+    <h4>Event</h4>
+    <hr />
+    <div class="row">
+        <div class="col-sm-6 col-md-3">
+            <a href="#" class="thumbnail">
+                <img src="~/Content/Images/Canucks_Ice.png" style="width:350px; height:200px"
+                     alt="Generic placeholder thumbnail">
+            </a>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <a href="#" class="thumbnail">
+                <img src ="/Content/images/@Html.DisplayFor(model => model.eventLogo)" style="width:350px; height:200px"
+                     alt="Generic placeholder thumbnail"></a>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <a href="#" class="thumbnail">
+                <img src="~/Content/Images/seat_map.jpg" style="width:350px; height:200px"
+                     alt="Generic placeholder thumbnail">
+            </a>
+        </div>
+    </div>
+    <dl class="dl text-center">
+
+        <dt class="label-info">
+            @Html.Raw("Description")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.eventDescription)
+        </dd>
+
+        <dt class="label-info">
+            @Html.Raw("Location")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.eventLocation)
+        </dd>
+
+        <dt class="label-info">
+            @Html.Raw("Date")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.eventDate)
+        </dd>
+
+        <dt class="label-info">
+            @Html.Raw("Time")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.eventTime)
+        </dd>
+
+        <dt class="label-info">
+            @Html.Raw("Cost")
+        </dt>
+
+        <dd>
+            @Html.Raw('$')@Html.DisplayFor(model => model.eventCost)
+        </dd>
+
+    </dl>
+    <hr />
+
+        <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" class="form-control" id="firstName" placeholder="First Name" required>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" class="form-control" id="lastName" placeholder="Last Name" required>
+            </div>
+            <div class="form-group">
+                <label for="creditCard">Credit Card #</label>
+                <input type="text" class="form-control" id="creditCard" placeholder="Enter Card Number" required>
+            </div>
+            <div class="form-group">
+                <label for="on0">Number of Tickets</label>
+                <select id="custom" name="os0" class="field-validation-error form-control text-box single-line" required>
+                    <option id="custom" value="1 Ticket">1 Ticket $150.00 CAD</option>
+                    <option id="custom" value="2 Tickets">2 Tickets $300.00 CAD</option>
+                    <option id="custom" value="3 Tickets">3 Tickets $450.00 CAD</option>
+                    <option id="custom" value="4 Tickets">4 Tickets $600.00 CAD</option>
+                </select>
+                <span class="field-validation-valid field-validation-error text-danger" data-valmsg-for="ticketQty" data-valmsg-replace="true"></span>
+                <input id="ticketQty" name="ticketQty" type="hidden" value="1" />
+            </div>
+            <div class="form-group">
+                <input type="hidden" name="currency_code" value="CAD">
+                <input type="hidden" name="cmd" value="_s-xclick">
+
+                <input type="hidden" name="hosted_button_id" value="WXNCE9FTUTVT2">
+                <input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                <img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+            </div>
+        </form>
+
+    </div>
+
+
+
+

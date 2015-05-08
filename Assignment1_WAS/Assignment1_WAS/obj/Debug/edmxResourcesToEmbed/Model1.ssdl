@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ticketsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'tickets.jesseDBUser.Attendee' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Attendee">
+    <Key>
+      <PropertyRef Name="attendeeID" />
+    </Key>
+    <Property Name="attendeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="purchaseDate" Type="varchar" MaxLength="128" />
+    <Property Name="purchaseTime" Type="varchar" MaxLength="128" />
+    <Property Name="firstName" Type="varchar" MaxLength="128" />
+    <Property Name="lastName" Type="varchar" MaxLength="128" />
+    <Property Name="sessionID" Type="varchar" MaxLength="128" />
+    <Property Name="transactionID" Type="varchar" MaxLength="128" />
+    <Property Name="ticketQty" Type="varchar" MaxLength="128" />
+    <Property Name="totalAmount" Type="money" />
+  </EntityType>
+  <EntityType Name="Events">
+    <Key>
+      <PropertyRef Name="eventID" />
+    </Key>
+    <Property Name="eventID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="eventCategory" Type="varchar" MaxLength="256" />
+    <Property Name="eventLogo" Type="varchar" MaxLength="256" />
+    <Property Name="eventDescription" Type="varchar" MaxLength="256" />
+    <Property Name="eventLocation" Type="varchar" MaxLength="256" />
+    <Property Name="eventDate" Type="date" />
+    <Property Name="eventTime" Type="varchar" MaxLength="256" />
+    <Property Name="eventCost" Type="money" />
+  </EntityType>
+  <EntityType Name="IPN">
+    <Key>
+      <PropertyRef Name="transactionID" />
+    </Key>
+    <Property Name="transactionID" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="firstName" Type="varchar" MaxLength="128" />
+    <Property Name="lastName" Type="varchar" MaxLength="128" />
+    <Property Name="buyerEmail" Type="varchar" MaxLength="128" />
+    <Property Name="txTime" Type="datetime" />
+    <Property Name="custom" Type="varchar" MaxLength="128" />
+    <Property Name="ticketQty" Type="varchar" MaxLength="128" />
+    <Property Name="amount" Type="money" />
+    <Property Name="paymentStatus" Type="varchar" MaxLength="64" />
+  </EntityType>
+  <EntityContainer Name="ticketsModelStoreContainer">
+    <EntitySet Name="Events" EntityType="Self.Events" Schema="jesseDBUser" store:Type="Tables" />
+    <EntitySet Name="IPN" EntityType="Self.IPN" Schema="jesseDBUser" store:Type="Tables" />
+    <EntitySet Name="Attendee" EntityType="Self.Attendee" store:Type="Tables" store:Schema="jesseDBUser">
+      <DefiningQuery>SELECT 
+    [Attendee].[attendeeID] AS [attendeeID], 
+    [Attendee].[purchaseDate] AS [purchaseDate], 
+    [Attendee].[purchaseTime] AS [purchaseTime], 
+    [Attendee].[firstName] AS [firstName], 
+    [Attendee].[lastName] AS [lastName], 
+    [Attendee].[sessionID] AS [sessionID], 
+    [Attendee].[transactionID] AS [transactionID], 
+    [Attendee].[ticketQty] AS [ticketQty], 
+    [Attendee].[totalAmount] AS [totalAmount]
+    FROM [jesseDBUser].[Attendee] AS [Attendee]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ticketsModelStoreContainer" CdmEntityContainer="ticketsEntities">
+    <EntitySetMapping Name="Events">
+      <EntityTypeMapping TypeName="ticketsModel.Event">
+        <MappingFragment StoreEntitySet="Events">
+          <ScalarProperty Name="eventID" ColumnName="eventID" />
+          <ScalarProperty Name="eventCategory" ColumnName="eventCategory" />
+          <ScalarProperty Name="eventLogo" ColumnName="eventLogo" />
+          <ScalarProperty Name="eventDescription" ColumnName="eventDescription" />
+          <ScalarProperty Name="eventLocation" ColumnName="eventLocation" />
+          <ScalarProperty Name="eventDate" ColumnName="eventDate" />
+          <ScalarProperty Name="eventTime" ColumnName="eventTime" />
+          <ScalarProperty Name="eventCost" ColumnName="eventCost" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IPNs">
+      <EntityTypeMapping TypeName="ticketsModel.IPN">
+        <MappingFragment StoreEntitySet="IPN">
+          <ScalarProperty Name="transactionID" ColumnName="transactionID" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="buyerEmail" ColumnName="buyerEmail" />
+          <ScalarProperty Name="txTime" ColumnName="txTime" />
+          <ScalarProperty Name="custom" ColumnName="custom" />
+          <ScalarProperty Name="ticketQty" ColumnName="ticketQty" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="paymentStatus" ColumnName="paymentStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Attendees">
+      <EntityTypeMapping TypeName="ticketsModel.Attendee">
+        <MappingFragment StoreEntitySet="Attendee">
+          <ScalarProperty Name="attendeeID" ColumnName="attendeeID" />
+          <ScalarProperty Name="purchaseDate" ColumnName="purchaseDate" />
+          <ScalarProperty Name="purchaseTime" ColumnName="purchaseTime" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="sessionID" ColumnName="sessionID" />
+          <ScalarProperty Name="transactionID" ColumnName="transactionID" />
+          <ScalarProperty Name="ticketQty" ColumnName="ticketQty" />
+          <ScalarProperty Name="totalAmount" ColumnName="totalAmount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

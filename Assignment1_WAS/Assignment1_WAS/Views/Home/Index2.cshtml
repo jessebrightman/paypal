@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<div class="jumbotron">
+    <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+        <label for="firstname">First Name:</label>
+        <input type="text" name="firstname" /><br />
+        <label for="lastname">Last Name:</label>
+        <input type="text" name="lastname" /><br />
+        <label for="ticketqty">Number of Tickets:</label>
+        <input type="text" name="ticketqty" /><br />
+
+
+        <input type="hidden" name="cmd" value="_s-xclick">
+        <input type="hidden" name="hosted_button_id" value="CSYPXEM6Z4UG2">
+        <input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+        <img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+</div>
+
